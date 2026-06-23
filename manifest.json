@@ -1,11 +1,11 @@
 {
 "name": "Radio Forestal de México",
 "short_name": "RadioForestal",
-"start_url": ".",
+"start_url": "/index.html",
 "display": "standalone",
 "background_color": "#0f0f0f",
 "theme_color": "#1DB954",
-"description": "Radio en vivo de México 24/7",
+"orientation": "portrait",
 "icons": [
 {
 "src": "icon.png",
