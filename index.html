@@ -1,30 +1,35 @@
  <img src="logo-web.png" alt="Logo de la radio">
-<div style="text-align:center;margin:50px 0;">
-
-    <button id="radioBtn"
-        onclick="
-        var a=document.getElementById('radioPlayer');
-        if(a.paused){
-            a.play();
-            this.classList.add('playing');
-            this.innerHTML='⏸ ESCUCHANDO EN VIVO';
-        }else{
-            a.pause();
-            this.classList.remove('playing');
-            this.innerHTML='▶ ESCUCHAR EN VIVO';
-        }
-        "
-        class="btn">
-        ▶ ESCUCHAR EN VIVO
-    </button>
-
-    <audio id="radioPlayer">
-        <source src="https://stereomia.ddns.net/stream" type="audio/mpeg">
-    </audio>
-
-</div>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stereo Mía - Portal</title>
 
 <style>
+body{
+    margin:0;
+    font-family:Arial;
+    background:#0f0f0f;
+    color:white;
+}
+
+/* HEADER */
+header{
+    background:#121212;
+    padding:20px;
+    text-align:center;
+    font-size:22px;
+    font-weight:bold;
+    color:#1DB954;
+}
+
+/* BOTÓN RADIO */
+.radio{
+    text-align:center;
+    margin:40px 0;
+}
+
 .btn{
     background:#1DB954;
     color:white;
@@ -34,8 +39,8 @@
     font-size:16px;
     font-weight:700;
     cursor:pointer;
-    box-shadow:0 10px 25px rgba(0,0,0,.25);
-    transition:all .3s ease;
+    box-shadow:0 10px 25px rgba(0,0,0,.4);
+    transition:0.3s;
 }
 
 .btn:hover{
@@ -44,8 +49,95 @@
 }
 
 .btn.playing{
-    background:#121212;
+    background:#111;
     color:#1DB954;
     border:1px solid #1DB954;
 }
+
+/* NOTICIAS */
+.container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    padding:20px;
+}
+
+.card{
+    background:#181818;
+    padding:15px;
+    border-radius:12px;
+    box-shadow:0 10px 20px rgba(0,0,0,.3);
+}
+
+.card h3{
+    color:#1DB954;
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:20px;
+    color:#888;
+    margin-top:40px;
+}
 </style>
+</head>
+
+<body>
+
+<header>
+🎧 STEREO MÍA - PORTAL OFICIAL
+</header>
+
+<!-- RADIO -->
+<div class="radio">
+
+<button id="radioBtn"
+onclick="
+var a=document.getElementById('radioPlayer');
+if(a.paused){
+a.play();
+this.classList.add('playing');
+this.innerHTML='⏸ ESCUCHANDO EN VIVO';
+}else{
+a.pause();
+this.classList.remove('playing');
+this.innerHTML='▶ ESCUCHAR EN VIVO';
+}
+"
+class="btn">
+▶ ESCUCHAR EN VIVO
+</button>
+
+<audio id="radioPlayer">
+<source src="https://stereomia.ddns.net/stream" type="audio/mpeg">
+</audio>
+
+</div>
+
+<!-- NOTICIAS -->
+<div class="container">
+
+<div class="card">
+<h3>📢 Noticia 1</h3>
+<p>Bienvenido al nuevo portal de Stereo Mía.</p>
+</div>
+
+<div class="card">
+<h3>🎶 Música en vivo</h3>
+<p>Disfruta nuestra programación 24/7.</p>
+</div>
+
+<div class="card">
+<h3>📱 Nueva web</h3>
+<p>Ahora con diseño tipo app moderna.</p>
+</div>
+
+</div>
+
+<footer>
+© 2026 Stereo Mía | Todos los derechos reservados
+</footer>
+
+</body>
+</html>
