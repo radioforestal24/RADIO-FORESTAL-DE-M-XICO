@@ -1,98 +1,33 @@
  <img src="logo-web.png" alt="Logo de la radio">
-
 <!DOCTYPE html>
 <html lang="es">
- <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#1DB954">
-
-<link rel="icon" href="icon.png">
-<link rel="apple-touch-icon" href="icon.png">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Radio Forestal de México</title>
 
+<!-- PWA -->
 <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1DB954">
+<link rel="icon" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
 
 <style>
-<div class="mini-player">
 
-<button onclick="
-var a=document.getElementById('radio');
-if(a.paused){a.play();document.getElementById('eq').style.display='flex';}
-else{a.pause();document.getElementById('eq').style.display='none';}
-">
-▶ Radio Forestal
-</button>
-
-<div id="eq" class="eq">
-<div></div><div></div><div></div><div></div><div></div>
-</div>
-
-<audio id="radio">
-<source src="https://stereomia.ddns.net/stream" type="audio/mpeg">
-</audio>
-
-</div>
-
-<style>
-.mini-player{
-position:fixed;
-bottom:0;
-left:0;
-right:0;
-background:#121212;
-padding:10px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-color:white;
-}
-
-.mini-player button{
-background:#1DB954;
-border:none;
-padding:10px 20px;
-border-radius:20px;
-color:white;
-font-weight:bold;
-}
-
-.eq{
-display:none;
-gap:3px;
-align-items:flex-end;
-height:20px;
-}
-
-.eq div{
-width:4px;
-height:5px;
-background:#1DB954;
-animation:wave 1s infinite ease-in-out;
-}
-
-.eq div:nth-child(2){animation-delay:0.1s;}
-.eq div:nth-child(3){animation-delay:0.2s;}
-.eq div:nth-child(4){animation-delay:0.3s;}
-.eq div:nth-child(5){animation-delay:0.4s;}
-
-@keyframes wave{
-0%,100%{height:5px;}
-50%{height:20px;}
-}
-</style>
- body{
+/* 🌑 BASE */
+body{
 margin:0;
 font-family:Arial;
-background:#0f0f0f;
+background: radial-gradient(circle at top,#1a1a1a,#000);
 color:white;
 }
 
 /* HEADER */
 header{
-background:#121212;
+background:rgba(0,0,0,0.6);
+backdrop-filter: blur(10px);
 padding:15px;
 display:flex;
 justify-content:space-between;
@@ -136,6 +71,7 @@ transform:scale(1.05);
 background:#1ed760;
 }
 
+/* LIVE */
 .live{
 margin-top:10px;
 color:red;
@@ -147,7 +83,7 @@ animation:blink 1s infinite;
 50%{opacity:0.3;}
 }
 
-/* WAVE */
+/* WAVES */
 #waves{
 display:flex;
 justify-content:center;
@@ -181,7 +117,9 @@ padding:20px;
 }
 
 .card{
-background:#181818;
+background:rgba(255,255,255,0.05);
+backdrop-filter: blur(10px);
+border:1px solid rgba(255,255,255,0.1);
 padding:15px;
 border-radius:12px;
 }
@@ -190,8 +128,8 @@ border-radius:12px;
 color:#1DB954;
 }
 
-/* 📱 RESPONSIVE (CELULAR) */
-@media (max-width: 768px){
+/* 📱 RESPONSIVE */
+@media (max-width:768px){
 
 header{
 flex-direction:column;
@@ -212,12 +150,6 @@ padding:30px 15px;
 
 .btn{
 width:90%;
-font-size:16px;
-padding:16px;
-}
-
-#waves{
-transform:scale(0.8);
 }
 
 .container{
@@ -225,10 +157,53 @@ grid-template-columns:1fr;
 padding:10px;
 }
 
-.card{
-font-size:14px;
 }
+
+/* 🎧 MINI PLAYER */
+.mini-player{
+position:fixed;
+bottom:0;
+left:0;
+right:0;
+background:#121212;
+padding:10px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+color:white;
+z-index:9999;
 }
+
+.mini-player button{
+background:#1DB954;
+border:none;
+padding:10px 20px;
+border-radius:20px;
+color:white;
+font-weight:bold;
+cursor:pointer;
+}
+
+/* 🔊 EQ */
+.eq{
+display:none;
+gap:3px;
+align-items:flex-end;
+height:20px;
+}
+
+.eq div{
+width:4px;
+height:5px;
+background:#1DB954;
+animation:wave 1s infinite ease-in-out;
+}
+
+.eq div:nth-child(2){animation-delay:0.1s;}
+.eq div:nth-child(3){animation-delay:0.2s;}
+.eq div:nth-child(4){animation-delay:0.3s;}
+.eq div:nth-child(5){animation-delay:0.4s;}
+
 </style>
 </head>
 
@@ -246,25 +221,25 @@ font-size:14px;
 
 <div class="hero">
 
+<img src="logo-web.png" alt="Logo" style="max-width:200px;margin-bottom:20px;">
+
 <button class="btn"
 onclick="
 var a=document.getElementById('radio');
 if(a.paused){
 a.play();
 document.getElementById('onair').style.display='block';
+document.getElementById('eq').style.display='flex';
 }else{
 a.pause();
 document.getElementById('onair').style.display='none';
+document.getElementById('eq').style.display='none';
 }
 ">
 ▶ ESCUCHAR EN VIVO
 </button>
 
 <div id="onair" class="live" style="display:none;">🔴 EN VIVO</div>
-
-<audio id="radio">
-<source src="https://stereomia.ddns.net/stream" type="audio/mpeg">
-</audio>
 
 <div id="waves">
 <div class="bar"></div>
@@ -274,8 +249,13 @@ document.getElementById('onair').style.display='none';
 <div class="bar"></div>
 </div>
 
+<audio id="radio">
+<source src="https://stereomia.ddns.net/stream" type="audio/mpeg">
+</audio>
+
 </div>
 
+<!-- NEWS -->
 <div class="container">
 
 <div class="card">
@@ -291,6 +271,23 @@ document.getElementById('onair').style.display='none';
 <div class="card">
 <h3>📱 App PWA</h3>
 <p>Instala la radio como aplicación.</p>
+</div>
+
+</div>
+
+<!-- MINI PLAYER -->
+<div class="mini-player">
+
+<button onclick="
+var a=document.getElementById('radio');
+if(a.paused){a.play();document.getElementById('eq').style.display='flex';}
+else{a.pause();document.getElementById('eq').style.display='none';}
+">
+▶ Radio Forestal
+</button>
+
+<div id="eq" class="eq">
+<div></div><div></div><div></div><div></div><div></div>
 </div>
 
 </div>
