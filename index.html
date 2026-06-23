@@ -1,3 +1,51 @@
  <img src="logo-web.png" alt="Logo de la radio">
-<audio controls> <source src="https://stereomia.ddns.net:8080/index.html?sid=1" type="audio/mpeg"> Your browser does not support audio.</audio>
-<iframe src="http://stereomia.ddns.net:8080/index.html?sid=1" width="100%" height="400" frameborder="0"></iframe>
+<div style="text-align:center;margin:50px 0;">
+
+    <button id="radioBtn"
+        onclick="
+        var a=document.getElementById('radioPlayer');
+        if(a.paused){
+            a.play();
+            this.classList.add('playing');
+            this.innerHTML='⏸ ESCUCHANDO EN VIVO';
+        }else{
+            a.pause();
+            this.classList.remove('playing');
+            this.innerHTML='▶ ESCUCHAR EN VIVO';
+        }
+        "
+        class="btn">
+        ▶ ESCUCHAR EN VIVO
+    </button>
+
+    <audio id="radioPlayer">
+        <source src="https://stereomia.ddns.net/stream" type="audio/mpeg">
+    </audio>
+
+</div>
+
+<style>
+.btn{
+    background:#1DB954;
+    color:white;
+    border:none;
+    padding:16px 30px;
+    border-radius:50px;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+    transition:all .3s ease;
+}
+
+.btn:hover{
+    transform:scale(1.05);
+    background:#1ed760;
+}
+
+.btn.playing{
+    background:#121212;
+    color:#1DB954;
+    border:1px solid #1DB954;
+}
+</style>
